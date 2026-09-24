@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>QVAC Quizzer — Local AI Study Lab</title>
+
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+  <div class="background-glow glow-one"></div>
+  <div class="background-glow glow-two"></div>
+
+  <div class="app">
+
+    <header class="header">
+
+      <div class="brand">
+
+        <div class="logo">
+          <span>Q</span>
+        </div>
+
+        <div>
+          <h1>QVAC <span>Quizzer</span></h1>
+          <p>Your notes. Your device. Your AI.</p>
+        </div>
+
+      </div>
+
+      <div class="local">
+        <span class="dot"></span>
+        <span>LOCAL AI</span>
+      </div>
+
+    </header>
+
+
+    <main>
+
+      <!-- HOME -->
+
+      <section id="home" class="card home-card">
+
+        <div class="hero">
+
+          <div class="hero-badge">
+            <span>✦</span>
+            ON-DEVICE STUDY LAB
+          </div>
+
+          <div class="hero-icon">
+            <div class="brain">🧠</div>
+          </div>
+
+          <h2>Turn your notes into<br><span>active recall.</span></h2>
+
+          <p>
+            Generate questions, test yourself, and ask your notes
+            anything — powered by AI running directly on your device.
+          </p>
+
+          <div class="features">
+
+            <div class="feature">
+              <div class="feature-icon">◈</div>
+              <strong>Local AI</strong>
+              <span>Powered by QVAC</span>
+            </div>
+
+            <div class="feature">
+              <div class="feature-icon">⌁</div>
+              <strong>Private</strong>
+              <span>Notes stay on-device</span>
+            </div>
+
+            <div class="feature">
+              <div class="feature-icon">⚡</div>
+              <strong>No API key</strong>
+              <span>Run it locally</span>
+            </div>
+
+          </div>
+
+          <button id="startBtn" class="primary">
+            <span>Start Quiz</span>
+            <span class="button-arrow">→</span>
+          </button>
+
+          <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            Loading QVAC models...
+          </div>
+
+          <p id="status" class="status"></p>
+
+        </div>
+
+      </section>
+
+
+      <!-- QUIZ -->
+
+      <section id="quiz" class="hidden">
+
+        <div class="quiz-top">
+
+          <div class="quiz-label">
+            <span class="mini-dot"></span>
+            ACTIVE SESSION
+          </div>
+
+          <div class="score">
+            SCORE
+            <strong id="score">0</strong>
+          </div>
+
+        </div>
+
+        <div class="question-meta">
+          <span id="questionNumber">Question 1 of 4</span>
+          <span>QVAC GENERATED</span>
+        </div>
+
+        <div class="progress">
+          <div id="progressBar"></div>
+        </div>
+
+
+        <div class="card question-card">
+
+          <div class="question-label">
+            QUESTION
+          </div>
+
+          <h2 id="question">
+            Loading question...
+          </h2>
+
+          <div class="answer-label">
+            YOUR ANSWER
+          </div>
+
+          <textarea
+            id="answer"
+            placeholder="Explain your answer..."
+            rows="6"
+          ></textarea>
+
+          <div class="answer-hint">
+            <span>Tip</span>
+            Be specific. QVAC will evaluate your answer.
+          </div>
+
+          <button id="submitBtn" class="primary submit-button">
+            <span>Submit Answer</span>
+            <span>↗</span>
+          </button>
+
+          <div id="grading" class="loading hidden">
+            <div class="spinner"></div>
+            QVAC is evaluating your answer...
+          </div>
+
+        </div>
+
+
+        <div id="result" class="card result hidden">
+
+          <div id="resultIcon" class="result-icon">
+            ✓
+          </div>
+
+          <div class="result-label">
+            AI EVALUATION
+          </div>
+
+          <h2 id="resultTitle">
+            Correct
+          </h2>
+
+          <p id="feedback"></p>
+
+          <button id="nextBtn" class="primary">
+            Next Question
+            <span>→</span>
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- FINISHED -->
+
+      <section id="finished" class="card hidden">
+
+        <div class="finished">
+
+          <div class="finished-icon">
+            ✦
+          </div>
+
+          <div class="hero-badge">
+            SESSION COMPLETE
+          </div>
+
+          <h2>Quiz complete.</h2>
+
+          <div class="final-score">
+            <span id="finalScore">0/0</span>
+          </div>
+
+          <p>
+            Here's how you performed. Review anything you missed
+            and try again when you're ready.
+          </p>
+
+          <div id="missed"></div>
+
+          <button id="restartBtn" class="primary">
+            Try Again
+            <span>↻</span>
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- ASK NOTES -->
+
+      <section id="askSection" class="card ask-card">
+
+        <div class="section-title">
+
+          <div class="ask-icon">
+            ◉
+          </div>
+
+          <div>
+            <div class="section-kicker">LOCAL KNOWLEDGE</div>
+            <h2>Ask your notes</h2>
+            <p>Chat with the material stored on your device.</p>
+          </div>
+
+        </div>
+
+        <div class="ask-row">
+
+          <input
+            id="askInput"
+            type="text"
+            placeholder="What do you want to know?"
+          >
+
+          <button id="askBtn">
+            Ask <span>↗</span>
+          </button>
+
+        </div>
+
+        <div id="askLoading" class="loading hidden">
+          <div class="spinner"></div>
+          Searching your notes locally...
+        </div>
+
+        <div id="askAnswer" class="ask-answer hidden"></div>
+
+      </section>
+
+    </main>
+
+
+    <footer>
+
+      <div class="footer-brand">
+        <span class="footer-logo">Q</span>
+        QVAC QUIZZER
+      </div>
+
+      <span class="footer-separator">•</span>
+
+      <span>AI inference runs on your device</span>
+
+      <span class="footer-separator">•</span>
+
+      <span>Built with QVAC</span>
+
+    </footer>
+
+  </div>
+
+
+  <script src="/app.js"></script>
+
+</body>
+</html>
